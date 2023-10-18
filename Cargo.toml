@@ -1,0 +1,30 @@
+[package]
+name = "uwp_roblox"
+version = "0.1.0"
+edition = "2021"
+
+# Strip strings and optimize for preformance
+[profile.release]
+strip=true
+opt-level=3
+lto = true
+codegen-units = 1
+
+[[bin]]
+name="patcher"
+path="src/patcher/main.rs"
+
+
+[lib]
+name="rbxlib"
+path="src/rbx_patch_lib/lib.rs"
+crate-type = ["rlib"]
+
+[dependencies]
+curl = "0.4.44"
+derive_builder = "0.12.0"
+md5 = "0.7.0"
+sysinfo = "0.29.10"
+windows = { version = "0.51.1", features = ["Win32_System_Com_Urlmon"] }
+#serde = { version = "1.0.189", features = ["derive"] }
+#serde_json = "1.0.107"
